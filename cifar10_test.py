@@ -102,20 +102,20 @@ def load_train(img_rows, img_cols, color_type=1, aug=True):
                 y_train.append(j)
                 driver_id.append(driver_data[flbase])
                 
-                imgTemp = dataAug.rotatedCW(img, 0.1, 0.25, 1.2)
-                X_train.append(imgTemp)
-                y_train.append(j)
-                driver_id.append(driver_data[flbase])
-                
-                imgTemp = dataAug.rotatedCCW(img, 0.1, 0.25, 1.2)
-                X_train.append(imgTemp)
-                y_train.append(j)
-                driver_id.append(driver_data[flbase])
-                
-                imgTemp = dataAug.cropSkretch(img, 0.05, 0.15)
-                X_train.append(imgTemp)
-                y_train.append(j)
-                driver_id.append(driver_data[flbase])
+               # imgTemp = dataAug.rotatedCW(img, 0.1, 0.25, 1.2)
+               # X_train.append(imgTemp)
+               # y_train.append(j)
+               # driver_id.append(driver_data[flbase])
+               # 
+               # imgTemp = dataAug.rotatedCCW(img, 0.1, 0.25, 1.2)
+               # X_train.append(imgTemp)
+               # y_train.append(j)
+               # driver_id.append(driver_data[flbase])
+               # 
+               # imgTemp = dataAug.cropSkretch(img, 0.05, 0.15)
+               # X_train.append(imgTemp)
+               # y_train.append(j)
+               # driver_id.append(driver_data[flbase])
     else:
         print('Read train images')
         for j in range(10):
