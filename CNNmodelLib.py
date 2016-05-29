@@ -150,9 +150,9 @@ def cifar10_cnn_model_yingnan(inputShape, nb_classes):
     
     model = Sequential()
 
-    model.add(Convolution2D(32, 3, 3, border_mode='same', input_shape=inputShape))
+    model.add(Convolution2D(64, 3, 3, border_mode='same', input_shape=inputShape))
     model.add(Activation('relu'))
-    model.add(Convolution2D(32, 3, 3))
+    model.add(Convolution2D(64, 3, 3))
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(0.25))
