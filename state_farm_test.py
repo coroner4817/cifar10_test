@@ -24,7 +24,7 @@ np.random.seed(2016)
 use_cache = 1
 color_type_global = 3
 img_rows_global, img_cols_global = 48, 64
-batch_size_global = 64
+batch_size_global = 256
 random_state_global = 20
 epoch_global = 20
 
@@ -237,8 +237,8 @@ def copy_selected_drivers(train_data, train_target, driver_id, driver_list):
 
 
 def get_model(inputShape, nb_class):
-    model = moustafa_model1(inputShape, nb_class)
-    sgd = SGD(lr=0.0015, decay=5e-6, momentum=0.9, nesterov=True)
+    model = cifar10_cnn_model_yingnan(inputShape, nb_class)
+    sgd = SGD(lr=0.0005, decay=5e-6, momentum=0.9, nesterov=True)
     model.compile(loss='categorical_crossentropy',
               optimizer=sgd,
               metrics=['accuracy'])
