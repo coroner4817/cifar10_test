@@ -78,21 +78,55 @@ def VGG_16(weights_path, inputShape, nb_classes):
     return model
 
 
-# In[65]:
+def moustafa_model1(inputShape, nb_classes):
+    model = Sequential()
+
+    model.add(Convolution2D(62, 3, 3, border_mode='same', input_shape=inputShape))
+    model.add(Activation('relu'))
+    model.add(Convolution2D(62, 3, 3, border_mode='same'))
+    model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+
+    model.add(Convolution2D(128, 3, 3, border_mode='same'))
+    model.add(Activation('relu'))
+    model.add(Convolution2D(128, 3, 3, border_mode='same'))
+    model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+
+    model.add(Convolution2D(64, 3, 3, border_mode='same'))
+    model.add(Activation('relu'))
+    model.add(Convolution2D(64, 3, 3, border_mode='same'))
+    model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+
+    model.add(Flatten())
+    model.add(Dense(128))
+    model.add(Activation('relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(512))
+    model.add(Activation('relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(nb_classes))
+    model.add(Activation('softmax'))
+
+    model.summary()
+
+    return model
+
 
 def cifar10_cnn_model(inputShape, nb_classes):
     #inputShape 3dim
     
     model = Sequential()
 
-    model.add(Convolution2D(32, 3, 3, border_mode='valid', input_shape=inputShape))
+    model.add(Convolution2D(32, 3, 3, border_mode='same', input_shape=inputShape))
     model.add(Activation('relu'))
     model.add(Convolution2D(32, 3, 3))
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(0.25))
 
-    model.add(Convolution2D(64, 3, 3, border_mode='valid'))
+    model.add(Convolution2D(64, 3, 3, border_mode='same'))
     model.add(Activation('relu'))
     model.add(Convolution2D(64, 3, 3))
     model.add(Activation('relu'))
@@ -111,7 +145,36 @@ def cifar10_cnn_model(inputShape, nb_classes):
     return model
 
 
-# In[66]:
+def cifar10_cnn_model_yingnan(inputShape, nb_classes):
+    #inputShape 3dim
+    
+    model = Sequential()
+
+    model.add(Convolution2D(32, 3, 3, border_mode='same', input_shape=inputShape))
+    model.add(Activation('relu'))
+    model.add(Convolution2D(32, 3, 3))
+    model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Dropout(0.25))
+
+    model.add(Convolution2D(64, 3, 3, border_mode='same'))
+    model.add(Activation('relu'))
+    model.add(Convolution2D(64, 3, 3))
+    model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Dropout(0.25))
+
+    model.add(Flatten())
+    model.add(Dense(512))
+    model.add(Activation('relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(nb_classes))
+    model.add(Activation('softmax'))
+              
+    model.summary()
+    
+    return model
+
 
 def mnist_cnn_model(inputShape, nb_classes):
     #inputShape 3dim

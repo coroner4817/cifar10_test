@@ -16,7 +16,7 @@ from keras.utils import np_utils
 from keras.models import model_from_json
 from numpy.random import permutation
 from aug_algo import aug_algo
-from CNNmodelLib import cifar10_cnn_model
+from CNNmodelLib import cifar10_cnn_model_yingnan, mnist_cnn_model, VGG_16, moustafa_model1
 
 dataAug = aug_algo()
 
@@ -237,10 +237,10 @@ def copy_selected_drivers(train_data, train_target, driver_id, driver_list):
 
 
 def get_model(inputShape, nb_class):
-    model = cifar10_cnn_model(inputShape, nb_class)
-    sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
+    model = moustafa_model1(inputShape, nb_class)
+    sgd = SGD(lr=0.0015, decay=5e-6, momentum=0.9, nesterov=True)
     model.compile(loss='categorical_crossentropy',
-              optimizer=RMSprop(),
+              optimizer=sgd,
               metrics=['accuracy'])
     
     return model
@@ -292,9 +292,8 @@ def run_cross_validation_full(nfolds=10, nb_epoch=10, split=0.2, modelStr=''):
     train_data_final -= np.mean(train_data_final, axis=0)
     train_data_final /= np.std(train_data_final, axis=0)
     
-    print('Training Size: ', train_data_final.shape[0])
-    print('Validating Size: ', valid_data_final.shape[0])
-    
+    print('Training Size: ', train_data_final.shape[0], 'Drivers: ', idxS)
+    print('Validating Size: ', valid_data_final.shape[0], 'Drivers: ', len(unique_drivers) - idxS)
     
     model = get_model((color_type_global, img_rows, img_cols), 10)
 
